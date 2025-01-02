@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     use ApiResponse;
 
-    function signup(SignupRequest $request) {
+    function register(SignupRequest $request) {
         $user = User::create($request->validated());
         $user["token"] = $user->createToken("User API Token")->plainTextToken;
         return $this->success("signup successfully", $user);
@@ -20,14 +20,20 @@ class AuthController extends Controller
     
     function login(LoginRequest $request) {
         $user = User::where("email", $request->email)->first();
-        if (password_verify($request->password, $user->password)) {
-            $user["token"] = $user->createToken("login token")->plainTextToken;
-            return $this->success("login successfully", $user);
-        } else {
+
+        if (!$user || !password_verify($request->password, $user->password)) {
             return $this->failed("Password is incorrect.");
-        }
+        } 
+
+        $user["token"] = $user->createToken("login token")->plainTextToken;
+        return $this->success("login successfully", $user);
     }
 
-    function forgetPassword() {}
-    function virefyEmail() {}
+    function logout() {
+        request()->user()->tokens()->delete();
+        return $this->success("logout successfully");
+    }
+
+    function forgetPassword() {} // later
+    function virefyEmail() {} // later
 }

@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\CityController;
+use App\Models\Category;
+use App\Models\Language;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +16,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            CategorySeeder::class,
+            LanguageSeeder::class,
+            CitySeeder::class
         ]);
+        // Category::factory(5)->create();
+        // Language::factory(5)->create();
     }
 }
