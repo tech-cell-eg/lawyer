@@ -11,4 +11,8 @@ class Language extends Model
     use HasFactory;
 
     protected $fillable = ["name"];
+
+    function lawyers() {
+        return $this->belongsToMany(Lawyer::class, "lawyer_language");
+    }
 }

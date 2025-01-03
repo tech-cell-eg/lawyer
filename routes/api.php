@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\LawyerController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +37,18 @@ Route::get("languages", [LanguageController::class, "index"]);
 // *** City
 // **************************************************************
 Route::get("cities", [CityController::class, "index"]);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Lawyer
+// **************************************************************
+Route::get("lawyers", [LawyerController::class, "index"]);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Review
+// **************************************************************
+Route::get("reviews", [ReviewController::class, "index"])->middleware('auth:sanctum');
 // **************************************************************
 // **************************************************************
 // **************************************************************
