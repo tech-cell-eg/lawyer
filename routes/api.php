@@ -10,15 +10,10 @@ use App\Http\Controllers\LawyerController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReviewController;
-use App\Models\Message;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/user', function (Request $request) {
-//     return $request->user();
-// })->middleware('auth:sanctum');
-
-
+// **************************************************************
+// **************************************************************
 // *** Auth
 // **************************************************************
 Route::post("register", [AuthController::class, "register"]);
@@ -48,6 +43,11 @@ Route::get("cities", [CityController::class, "index"]);
 // *** Lawyer
 // **************************************************************
 Route::get("lawyers", [LawyerController::class, "index"]);
+Route::get("lawyers/rate/{n}", [LawyerController::class, "rate"]);
+Route::get("lawyers/experience_years/{range}", [LawyerController::class, "experience_years"]);
+Route::get("lawyers/price/{range}", [LawyerController::class, "price"]);
+Route::get("lawyers/category/{id}", [LawyerController::class, "category"]);
+Route::get("lawyers/free", [LawyerController::class, "free"]);
 // **************************************************************
 // **************************************************************
 // **************************************************************

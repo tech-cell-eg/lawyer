@@ -13,7 +13,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $data = $categories->pluck("name")->toArray();
+        $data = $categories->pluck("name", "id")->toArray();
         return $this->success("all categories", $data);
     }
 
