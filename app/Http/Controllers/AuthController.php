@@ -6,11 +6,19 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
 use App\Models\User;
 use App\Traits\ApiResponse;
-use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class AuthController extends Controller
+class AuthController extends Controller implements HasMiddleware
 {
     use ApiResponse;
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware("auth:sanctum", only: ["logout"]),
+        ];
+    }
 
     function register(SignupRequest $request) {
         $user = User::create($request->validated());

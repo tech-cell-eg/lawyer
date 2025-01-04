@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Http\Controllers\CityController;
+use App\Models\Appointment;
+use App\Models\Card;
 use App\Models\Category;
 use App\Models\Language;
 use App\Models\Lawyer;
@@ -15,22 +17,19 @@ use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
+        User::factory(3)->create();
         $this->call([
             CategorySeeder::class,
             LanguageSeeder::class,
-            CitySeeder::class
-        ]);
-        Lawyer::factory(10)->create();
-        $this->call([
+            CitySeeder::class,
+            LawyerSeeder::class,
             LawyerLangSeeder::class,
             CategoryLawyerSeeder::class
         ]);
-        User::factory(3)->create();
-        Review::factory(30)->create();
+        Review::factory(50)->create();
+        Appointment::factory(30)->create();
+        Card::factory(10)->create();
     }
 }

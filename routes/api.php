@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LanguageController;
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // **************************************************************
 Route::post("register", [AuthController::class, "register"]);
 Route::post("login", [AuthController::class, "login"]);
-Route::post("logout", [AuthController::class, "logout"])->middleware('auth:sanctum');
+Route::post("logout", [AuthController::class, "logout"]);
 // **************************************************************
 // **************************************************************
 // **************************************************************
@@ -48,7 +50,21 @@ Route::get("lawyers", [LawyerController::class, "index"]);
 // **************************************************************
 // *** Review
 // **************************************************************
-Route::get("reviews", [ReviewController::class, "index"])->middleware('auth:sanctum');
+Route::get("reviews", [ReviewController::class, "index"]);
+Route::post("reviews", [ReviewController::class, "store"]);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Appointment
+// **************************************************************
+Route::get("appointments", [AppointmentController::class, "index"]);
+Route::post("appointments", [AppointmentController::class, "store"]);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Card
+// **************************************************************
+Route::apiResource("cards", CardController::class);
 // **************************************************************
 // **************************************************************
 // **************************************************************

@@ -9,6 +9,15 @@ class Lawyer extends Model
 {
     use HasFactory;
 
+    protected $fillable= [
+        "image_link",
+        "name",
+        "biography",
+        "city_id",
+        "experience_years",
+        "hour_price"
+    ];
+
     function languages() {
         return $this->belongsToMany(Language::class, "lawyer_language");
     }

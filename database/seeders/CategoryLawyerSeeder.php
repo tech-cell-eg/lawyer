@@ -14,11 +14,14 @@ class CategoryLawyerSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 10; $i++) {
-            DB::table("category_lawyer")->insert([
-                "lawyer_id" => Lawyer::inRandomOrder()->first()->id,
-                "category_id" => Category::inRandomOrder()->first()->id
-            ]);
+        // every lawyer will have 1 or 2 or 3 or 4 category only 
+        for ($i = 1; $i <= count(Lawyer::all()->toArray()); $i++) {
+            for ($j = 1; $j <= rand(1, 4); $j++) {
+                DB::table("category_lawyer")->insert([
+                    "lawyer_id" => $i,
+                    "category_id" => Category::inRandomOrder()->first()->id
+                ]);
+            }
         }
     }
 }

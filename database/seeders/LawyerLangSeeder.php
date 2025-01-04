@@ -15,11 +15,14 @@ class LawyerLangSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i=0; $i < 10; $i++) {
-            DB::table("lawyer_language")->insert([
-                "lawyer_id" => Lawyer::inRandomOrder()->first()->id,
-                "language_id" => Language::inRandomOrder()->first()->id
-            ]);
+        // every lawyer will have 1 or 2 or 3 language only 
+        for ($i=1; $i <= count(Lawyer::all()->toArray()); $i++) {
+            for ($j=1; $j <= rand(1,3); $j++) {         
+                DB::table("lawyer_language")->insert([
+                    "lawyer_id" => $i,
+                    "language_id" => Language::inRandomOrder()->first()->id
+                ]);
+            }
         }
     }
 }
