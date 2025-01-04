@@ -7,7 +7,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LawyerController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReviewController;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -65,6 +68,19 @@ Route::post("appointments", [AppointmentController::class, "store"]);
 // *** Card
 // **************************************************************
 Route::apiResource("cards", CardController::class);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Payment
+// **************************************************************
+Route::apiResource("payments", PaymentController::class);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Message
+// **************************************************************
+Route::delete("messages/clear", [MessageController::class, 'clear']);
+Route::apiResource("messages", MessageController::class);
 // **************************************************************
 // **************************************************************
 // **************************************************************

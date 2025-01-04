@@ -2,18 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Http\Controllers\CityController;
 use App\Models\Appointment;
 use App\Models\Card;
-use App\Models\Category;
-use App\Models\Language;
-use App\Models\Lawyer;
+use App\Models\LawyerMsg;
+use App\Models\Message;
+use App\Models\Payment;
 use App\Models\Review;
 use App\Models\User;
-use Database\Factories\LawyerFactory;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\UserMsg;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,5 +28,7 @@ class DatabaseSeeder extends Seeder
         Review::factory(50)->create();
         Appointment::factory(30)->create();
         Card::factory(10)->create();
+        Payment::factory(15)->create();
+        Message::factory(15)->create();
     }
 }
