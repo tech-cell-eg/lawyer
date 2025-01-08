@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        User::factory(3)->create();
         $this->call([
+            UserSeeder::class,
             CategorySeeder::class,
             LanguageSeeder::class,
             CitySeeder::class,
@@ -29,6 +29,6 @@ class DatabaseSeeder extends Seeder
         Appointment::factory(30)->create();
         Card::factory(10)->create();
         Payment::factory(15)->create();
-        Message::factory(15)->create();
+        Message::factory(30)->create();
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LawyerController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,12 @@ Route::apiResource("payments", PaymentController::class);
 // **************************************************************
 Route::delete("messages/clear", [MessageController::class, 'clear']);
 Route::apiResource("messages", MessageController::class);
+// **************************************************************
+// **************************************************************
+// **************************************************************
+// *** Notification
+// **************************************************************
+Route::apiResource("notifications", NotificationController::class);
 // **************************************************************
 // **************************************************************
 // **************************************************************

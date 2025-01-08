@@ -12,7 +12,7 @@ class LanguageController extends Controller
     public function index()
     {
         $languages = Language::all();
-        $data = $languages->pluck("name")->toArray();
+        $data = $languages->pluck("name", "id")->toArray();
         return $this->success("Languages List", $data);
     }
 }

@@ -11,7 +11,7 @@ class CityController extends Controller
     use ApiResponse;
     function index() {
         $cities = City::all();
-        $data = $cities->pluck("name")->toArray();
+        $data = $cities->pluck("name", "id")->toArray();
         return $this->success("cities List", $data);
     }
 }
