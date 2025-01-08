@@ -16,10 +16,11 @@ class CardObserver
             'title' => "New Card!",
             'msg' => "Your $card->holder_name Card is stored successful"
         ];
-
-        auth('sanctum')->user->notify(new UserNotification($data));
+        if (auth('sanctum')->check()) {
+            auth('sanctum')->user->notify(new UserNotification($data));
+        }
     }
-    
+
     public function deleted(Card $card): void
     {
         $data = [

@@ -13,7 +13,8 @@ class PaymentObserver
             'title' => "New Payment!",
             'msg' => "You payment is successful!"
         ];
-
-        auth('sanctum')->user->notify(new UserNotification($data));
+        if (auth('sanctum')->check()) {
+            auth('sanctum')->user->notify(new UserNotification($data));
+        }
     }
 }

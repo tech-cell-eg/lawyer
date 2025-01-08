@@ -13,13 +13,14 @@ class AppointmentObserver
      */
     public function created(Appointment $appointment): void
     {
-        $lawyer_name = Lawyer::find($appointment->lawyer_id)->name;
+        $lawyer_name = Lawyer::find($appointment->lawyer_id)?->name;
 
         $data = [
             'title' => "Appointment booked",
             'msg' => "Your appointment booking is successful with $lawyer_name."
-        ]; 
-
-        auth('sanctum')->user->notify(new UserNotification($data));
+        ];
+        if (auth('sanctum')->check()) {
+            auth('sanctum')->user->notify(new UserNotification($data));
+        }
     }
 }

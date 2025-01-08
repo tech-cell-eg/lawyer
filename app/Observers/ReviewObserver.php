@@ -7,6 +7,9 @@ use App\Notifications\UserNotification;
 
 class ReviewObserver
 {
+    /**
+     * Handle the Review "created" event.
+     */
     public function created(Review $review): void
     {
         if ($review->rating == 5) {
@@ -22,7 +25,8 @@ class ReviewObserver
                 'msg' => "We're sorry your experience didn’t meet your expectations. Please let us know how we can make things right. Your feedback helps us improve!"
             ];
         }
-
-        auth('sanctum')->user->notify(new UserNotification($data));
+        if (auth('sanctum')->check()) {
+            auth('sanctum')->user->notify(new UserNotification($data));
+        }
     }
 }
